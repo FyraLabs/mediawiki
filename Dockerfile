@@ -1,10 +1,15 @@
 FROM alpine:latest AS preparer
 
+RUN apk add --no-cache patch
+
 WORKDIR /tmp
-RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-8ad42e2.tar.gz
-RUN tar -xzf PluggableAuth-REL1_39-8ad42e2.tar.gz
+RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-dc30743.tar.gz
+RUN tar -xzf PluggableAuth-REL1_39-dc30743.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/OpenIDConnect-REL1_39-92b7b46.tar.gz
 RUN tar -xzf OpenIDConnect-REL1_39-92b7b46.tar.gz
+
+COPY oidc-composer.patch .
+RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
 
 FROM mediawiki:1.39 as builder
 
