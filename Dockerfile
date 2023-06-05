@@ -27,6 +27,10 @@ COPY composer.local.json .
 
 RUN composer update
 
+# NOTE(lexisother): Trust me, this is absolutely necessary, otherwise the patch
+# applied to the composer.json further above will NOT take effect.
+RUN cd extensions/OpenIDConnect && composer update && cd ../../
+
 FROM mediawiki:1.39
 
 COPY --from=builder /var/www/html /var/www/html
