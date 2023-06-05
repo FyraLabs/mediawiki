@@ -5,9 +5,9 @@ RUN apk add --no-cache patch
 WORKDIR /tmp
 RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-dc30743.tar.gz
 RUN tar -xzf PluggableAuth-REL1_39-dc30743.tar.gz
-RUN wget https://extdist.wmflabs.org/dist/extensions/OpenIDConnect-REL1_39-92b7b46.tar.gz
+# RUN wget https://extdist.wmflabs.org/dist/extensions/OpenIDConnect-REL1_39-92b7b46.tar.gz
 # RUN tar -xzf OpenIDConnect-REL1_39-92b7b46.tar.gz
-# RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
+RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN tar -xzf NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_39-e5c63ef.tar.gz
 RUN tar -xzf CodeMirror-REL1_39-e5c63ef.tar.gz
