@@ -6,8 +6,8 @@ WORKDIR /tmp
 RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-dc30743.tar.gz
 RUN tar -xzf PluggableAuth-REL1_39-dc30743.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/OpenIDConnect-REL1_39-92b7b46.tar.gz
-RUN tar -xzf OpenIDConnect-REL1_39-92b7b46.tar.gz
-RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
+# RUN tar -xzf OpenIDConnect-REL1_39-92b7b46.tar.gz
+# RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN tar -xzf NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_39-e5c63ef.tar.gz
 RUN tar -xzf CodeMirror-REL1_39-e5c63ef.tar.gz
@@ -16,8 +16,8 @@ RUN tar -xzf TemplateStyles-REL1_39-a8c062d.tar.gz
 RUN wget -O DiscordNotifications.tar.gz https://github.com/kulttuuri/DiscordNotifications/archive/a46e3f22adbe24ba853f38a5579d718027e4d80b.tar.gz
 RUN mkdir DiscordNotifications && tar -xzf DiscordNotifications.tar.gz -C DiscordNotifications --strip-components 1
 
-COPY oidc-composer.patch .
-RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
+# COPY oidc-composer.patch .
+# RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
 
 FROM mediawiki:1.39 as builder
 
@@ -30,19 +30,19 @@ RUN mv composer.phar /usr/local/bin/composer
 WORKDIR /var/www/html
 
 COPY --from=preparer /tmp/PluggableAuth extensions/PluggableAuth
-COPY --from=preparer /tmp/OpenIDConnect extensions/OpenIDConnect
+# COPY --from=preparer /tmp/OpenIDConnect extensions/OpenIDConnect
 COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
 COPY --from=preparer /tmp/DiscordNotifications extensions/DiscordNotifications
-COPY composer.local.json .
+# COPY composer.local.json .
 COPY htaccess .htaccess
 
-RUN composer update
+# RUN composer update
 
 # NOTE(lexisother): Trust me, this is absolutely necessary, otherwise the patch
 # applied to the composer.json further above will NOT take effect.
-RUN cd extensions/OpenIDConnect && composer update && cd ../../
+# RUN cd extensions/OpenIDConnect && composer update && cd ../../
 
 FROM mediawiki:1.39
 
