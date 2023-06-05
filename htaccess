@@ -1,0 +1,24 @@
+RewriteEngine on
+
+# Verifying if user forgot to put trailling slash. If so, we'll rewrite to Main_Page
+RewriteRule ^(.*) /index.php?tile=Main_Page [L]
+
+# Don't rewrite requests for files in MediaWiki subdirectories,
+# MediaWiki PHP files, HTTP error documents, favicon.ico, or robots.txt
+#RewriteCond %{REQUEST_URI} !^/sys/
+RewriteCond %{REQUEST_URI} !^/load.php
+RewriteCond %{REQUEST_URI} !^/api.php
+RewriteCond %{REQUEST_URI} !^/images/
+RewriteCond %{REQUEST_URI} !^/skins/
+RewriteCond %{REQUEST_URI} !^/stylesheets/
+RewriteCond %{REQUEST_URI} !^/resources/
+RewriteCond %{REQUEST_URI} !^/(redirect|texvc|index).php
+RewriteCond %{REQUEST_URI} !^/error/(40(1|3|4)|500).html
+RewriteCond %{REQUEST_URI} !^/favicon.ico
+RewriteCond %{REQUEST_URI} !^/robots.txt
+#RewriteCond %{REQUEST_URI} !^/mw-config/
+
+# Make sure there is no query string (Unless user is making a search)
+RewriteCond %{QUERY_STRING} ^$ [OR] RewriteCond %{REQUEST_URI} ^/Special:Search
+
+RewriteRule ^(.*) /index.php/$1 [L]

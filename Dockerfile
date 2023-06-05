@@ -33,6 +33,7 @@ COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
 COPY composer.local.json .
+COPY htaccess .htaccess
 
 RUN composer update
 
