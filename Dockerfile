@@ -13,6 +13,8 @@ RUN wget https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_39-e5c63ef.
 RUN tar -xzf CodeMirror-REL1_39-e5c63ef.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/TemplateStyles-REL1_39-a8c062d.tar.gz
 RUN tar -xzf TemplateStyles-REL1_39-a8c062d.tar.gz
+RUN wget -O DiscordNotifications.tar.gz https://github.com/kulttuuri/DiscordNotifications/archive/a46e3f22adbe24ba853f38a5579d718027e4d80b.tar.gz
+RUN mkdir DiscordNotifications && tar -xzf DiscordNotifications.tar.gz -C DiscordNotifications --strip-components 1
 
 COPY oidc-composer.patch .
 RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
@@ -32,6 +34,7 @@ COPY --from=preparer /tmp/OpenIDConnect extensions/OpenIDConnect
 COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
+COPY --from=preparer /tmp/DiscordNotifications extensions/DiscordNotifications
 COPY composer.local.json .
 COPY htaccess .htaccess
 
