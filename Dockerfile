@@ -7,6 +7,8 @@ RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-dc307
 RUN tar -xzf PluggableAuth-REL1_39-dc30743.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/OpenIDConnect-REL1_39-92b7b46.tar.gz
 RUN tar -xzf OpenIDConnect-REL1_39-92b7b46.tar.gz
+RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
+RUN tar -xzf NativeSvgHandler-REL1_39-95310ed.tar.gz
 
 COPY oidc-composer.patch .
 RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
@@ -23,6 +25,7 @@ WORKDIR /var/www/html
 
 COPY --from=preparer /tmp/PluggableAuth extensions/PluggableAuth
 COPY --from=preparer /tmp/OpenIDConnect extensions/OpenIDConnect
+COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY composer.local.json .
 
 RUN composer update
