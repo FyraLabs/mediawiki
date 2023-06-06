@@ -17,6 +17,9 @@ RUN wget https://extdist.wmflabs.org/dist/extensions/TemplateStyles-REL1_39-2ada
 RUN tar -xzf TemplateStyles-REL1_39-2adabe9.tar.gz
 RUN wget -O DiscordNotifications.tar.gz https://github.com/kulttuuri/DiscordNotifications/archive/a46e3f22adbe24ba853f38a5579d718027e4d80b.tar.gz
 RUN mkdir DiscordNotifications && tar -xzf DiscordNotifications.tar.gz -C DiscordNotifications --strip-components 1
+RUN wget -O Citizen.tar.gz https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.tar.gz
+RUN tar -xzf Citizen.tar.gz
+RUN mv Citizen-main Citizen
 
 # COPY oidc-composer.patch .
 # RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
@@ -37,6 +40,7 @@ COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
 COPY --from=preparer /tmp/DiscordNotifications extensions/DiscordNotifications
+COPY --from=preparer /tmp/Citizen skins/DiscordNotifications
 COPY composer.local.json .
 COPY htaccess .htaccess
 
