@@ -6,9 +6,9 @@ WORKDIR /tmp
 # We need a version pinning system. WMFLABS URLs CHANGE ALL THE TIME.
 RUN wget https://extdist.wmflabs.org/dist/extensions/PluggableAuth-REL1_39-fac6234.tar.gz
 RUN tar -xzf PluggableAuth-REL1_39-fac6234.tar.gz
-RUN wget https://github.com/FyraLabs/mediawiki-extensions-OpenIDConnect/archive/45e344b8994d4d63898f7a39c6fee5807ca85bc6.tar.gz
-RUN tar -xzf 45e344b8994d4d63898f7a39c6fee5807ca85bc6.tar.gz
-RUN mv mediawiki-extensions-OpenIDConnect-45e344b8994d4d63898f7a39c6fee5807ca85bc6 OpenIDConnect
+RUN wget https://github.com/FyraLabs/mediawiki-extensions-OpenIDConnect/archive/df16f783f40502344f4ba08711f4a202e6cad1c6.tar.gz
+RUN tar -xzf df16f783f40502344f4ba08711f4a202e6cad1c6.tar.gz
+RUN mv mediawiki-extensions-OpenIDConnect-df16f783f40502344f4ba08711f4a202e6cad1c6 OpenIDConnect
 RUN wget https://extdist.wmflabs.org/dist/extensions/NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN tar -xzf NativeSvgHandler-REL1_39-95310ed.tar.gz
 RUN wget https://extdist.wmflabs.org/dist/extensions/CodeMirror-REL1_39-0313917.tar.gz
