@@ -19,7 +19,7 @@ RUN wget -O DiscordNotifications.tar.gz https://github.com/kulttuuri/DiscordNoti
 RUN mkdir DiscordNotifications && tar -xzf DiscordNotifications.tar.gz -C DiscordNotifications --strip-components 1
 RUN wget -O Citizen.tar.gz https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.tar.gz
 RUN tar -xzf Citizen.tar.gz
-RUN mv Citizen-main Citizen
+RUN mv mediawiki-skins-Citizen-main Citizen
 
 # COPY oidc-composer.patch .
 # RUN patch -i oidc-composer.patch OpenIDConnect/composer.json
