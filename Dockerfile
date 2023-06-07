@@ -40,7 +40,7 @@ COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
 COPY --from=preparer /tmp/DiscordNotifications extensions/DiscordNotifications
-COPY --from=preparer /tmp/Citizen skins/DiscordNotifications
+COPY --from=preparer /tmp/Citizen skins/Citizen
 COPY composer.local.json .
 COPY htaccess .htaccess
 
