@@ -19,6 +19,8 @@ RUN wget -O DiscordNotifications.tar.gz https://github.com/kulttuuri/DiscordNoti
 RUN mkdir DiscordNotifications && tar -xzf DiscordNotifications.tar.gz -C DiscordNotifications --strip-components 1
 RUN wget -O Citizen.tar.gz https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.tar.gz
 RUN tar -xzf Citizen.tar.gz
+RUN wget https://extdist.wmflabs.org/dist/extensions/UserMerge-REL1_39-4a3e2fd.tar.gz
+RUN tar -xzf UserMerge-REL1_39-4a3e2fd.tar.gz
 RUN mv mediawiki-skins-Citizen-main Citizen
 
 # COPY oidc-composer.patch .
@@ -40,6 +42,7 @@ COPY --from=preparer /tmp/NativeSvgHandler extensions/NativeSvgHandler
 COPY --from=preparer /tmp/CodeMirror extensions/CodeMirror
 COPY --from=preparer /tmp/TemplateStyles extensions/TemplateStyles
 COPY --from=preparer /tmp/DiscordNotifications extensions/DiscordNotifications
+COPY --from=preparer /tmp/UserMerge extensions/UserMerge
 COPY --from=preparer /tmp/Citizen skins/Citizen
 COPY composer.local.json .
 COPY htaccess .htaccess
